@@ -44,6 +44,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Tag Team Image Analysis API", lifespan=lifespan)
 
+@app.get("/")
+def home():
+    return {"status": "running", "message": "Tag Team Image Analysis API is active. POST image to /analyze"}
 
 @app.post("/analyze", response_class=JSONResponse)
 async def analyze_image(file: UploadFile = File(...)):
